@@ -79,7 +79,7 @@
         <Button
             text="Create"
             press="onCreatePress"
-            visible="{= ${roleModel>/role} === 'CUSTOMER' }"
+           
             />
 
     </OverflowToolbar>

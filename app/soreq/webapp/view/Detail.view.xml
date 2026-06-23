@@ -20,8 +20,7 @@
                 id="_IDGenButton8"
                 icon="sap-icon://delete"
                 type="Reject"
-                visible="{=
-        ${Status} !== 'Approved'
+                visible="{= ${Status} === 'OnHold' 
     }"
                 press="onDelete"
             />
@@ -30,10 +29,7 @@
                 text="Approve"
                 type="Accept"
                 press="onApprove"
-                visible="{=
-        ${Status} !== 'Approved'
-        &amp;&amp; ${roleModel>/role} === 'HP_BUYER'
-    }"
+                visible="{= ${Status} === 'OnHold' }"
             />
 
             <Button
@@ -43,7 +39,6 @@
                 press="onReject"
                 visible="{=
         ${Status} !== 'Approved'
-        &amp;&amp; ${roleModel>/role} === 'HP_BUYER'
     }"
             />
             <Button

@@ -10,38 +10,38 @@ sap.ui.define([
 
 
         onInit: function () {
-            var oRoleModel = new JSONModel({
-                role: ""
-            });
+            // var oRoleModel = new JSONModel({
+            //     role: ""
+            // });
 
-            this.getOwnerComponent().setModel(oRoleModel, "roleModel");
-            console.log("MODEL", this.getView().getModel());
+            // this.getOwnerComponent().setModel(oRoleModel, "roleModel");
+            // console.log("MODEL", this.getView().getModel());
 
 
 
-            console.log(
-    "Component Model",
-    this.getOwnerComponent().getModel()
-);
-            this.getOwnerComponent().getModel().callFunction("/whoAmI", {
+//             console.log(
+//     "Component Model",
+//     this.getOwnerComponent().getModel()
+// );
+            // this.getOwnerComponent().getModel().callFunction("/whoAmI", {
 
-                method: "GET",
+            //     method: "GET",
 
-                success: function (oData) {
-                    console.log("whoAmI Response:", oData);
-                    console.log("User Role:", oData.whoAmI.role);
-                    console.log("Email:", oData.whoAmI.email);
+            //     success: function (oData) {
+            //         console.log("whoAmI Response:", oData);
+            //         console.log("User Role:", oData.whoAmI.role);
+            //         console.log("Email:", oData.whoAmI.email);
 
-                    this.getOwnerComponent()
-                        .getModel("roleModel")
-                        .setProperty("/role", oData.whoAmI.role);
+            //         this.getOwnerComponent()
+            //             .getModel("roleModel")
+            //             .setProperty("/role", oData.whoAmI.role);
 
-                }.bind(this),
+            //     }.bind(this),
 
-                error: function (oError) {
-                    console.error(oError);
-                }
-            });
+            //     error: function (oError) {
+            //         console.error(oError);
+            //     }
+            // });
 
 
         },
