@@ -1,0 +1,175 @@
+<mvc:View
+    controllerName="ust.so.soreq.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Page
+        id="_IDGenPage3"
+        title="Create Sales Order"
+    >
+        <content>
+            <!-- ✅ HEADER SECTION -->
+            <Panel
+                id="_IDGenPanel1"
+                headerText="Header Details"
+                class="sapUiSmallMargin"
+            >
+                <f:SimpleForm
+                    id="_IDGenSimpleForm1"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    columnsXL="3"
+                    columnsL="3"
+                    columnsM="2"
+                >
+                    <f:content>
+                        <Label
+                            id="_IDGenLabel6"
+                            text="Customer ID"
+                        />
+                        <Input
+                            id="_IDGenInput"
+                            width="250px"
+                            value="{createModel>/CustomerId}"
+                        />
+
+                        <Label
+                            id="_IDGenLabel7"
+                            text="Customer Name"
+                        />
+                        <Input
+                            id="_IDGenInput1"
+                            width="250px"
+                            value="{createModel>/CustomerName}"
+                        />
+
+                        <Label
+                            id="_IDGenLabel8"
+                            text="Factory"
+                        />
+                        <Input
+                            id="_IDGenInput2"
+                            width="250px"
+                            value="{createModel>/Factory}"
+                        />
+
+                        <Label
+                            id="_IDGenLabel9"
+                            text="Order Date"
+                        />
+                        <DatePicker
+                            id="_IDGenDatePicker"
+                            width="250px"
+                            value="{createModel>/OrderDate}"
+                        />
+
+                        <Label
+                            id="_IDGenLabel10"
+                            text="Requested Date"
+                        />
+                        <DatePicker
+                            id="_IDGenDatePicker1"
+                            width="250px"
+                            value="{createModel>/RequestedDate}"
+                        />
+
+                        <Label
+                            id="_IDGenLabel11"
+                            text="Currency"
+                        />
+                        <Input
+                            id="_IDGenInput3"
+                            width="250px"
+                            value="{createModel>/Currency}"
+                        />
+                    </f:content>
+                </f:SimpleForm>
+            </Panel>
+
+            <!-- ✅ ITEMS SECTION -->
+            <Panel
+                id="_IDGenPanel2"
+                headerText="Items"
+                class="sapUiSmallMargin"
+            >
+                <Table
+                    id="itemsTable"
+                    items="{createModel>/Items}"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Items" />
+
+                            <ToolbarSpacer />
+
+                            <Button
+                                id="_IDGenButton"
+                                text="Add Item"
+                                icon="sap-icon://add"
+                                type="Emphasized"
+                                press=".onAddItem"
+                            />
+                        </OverflowToolbar>
+                    </headerToolbar>
+
+                    <columns>
+                        <Column>
+                            <Text text="Item" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Material" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Qty" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Price" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Amount" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Input value="{createModel>ItemNo}" />
+
+                                <Input value="{createModel>MaterialNo}" />
+
+                                <Input value="{createModel>Quantity}" />
+
+                                <Input value="{createModel>UnitPrice}" />
+
+                                <Input value="{createModel>NetAmount}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </Panel>
+        </content>
+
+        <!-- ✅ FOOTER -->
+        <footer>
+            <Toolbar id="_IDGenToolbar">
+                <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                <Button
+                    id="_IDGenButton1"
+                    text="Save"
+                    type="Emphasized"
+                    press=".onSave"
+                />
+                <Button
+                    id="_IDGenButton2"
+                    text="Cancel"
+                    press=".onCancel"
+                />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

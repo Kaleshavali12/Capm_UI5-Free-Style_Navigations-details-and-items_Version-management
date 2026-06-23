@@ -1,0 +1,90 @@
+<mvc:View
+    controllerName="ust.so.soreq.controller.SO"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Page
+        id="_IDGenPage"
+        title="Sales Order List"
+    >
+        <content>
+            <smartFilterBar:SmartFilterBar
+                id="smartFilterBar"
+                entitySet="SalesOrderHeaders"
+                persistencyKey="SmartFilter_Explored"
+                basicSearchFieldName="SalesOrderNo"
+                enableBasicSearch="true"
+            >
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration
+                        id="_IDGenControlConfiguration"
+                        key="SalesOrderNo"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="_IDGenControlConfiguration1"
+                        key="CustomerName"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="_IDGenControlConfiguration2"
+                        key="Status"
+                        visibleInAdvancedArea="true"
+                    />
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+
+            <smartTable:SmartTable
+                entitySet="SalesOrderHeaders"
+                smartFilterId="smartFilterBar"
+                tableType="ResponsiveTable"
+                enableExport="true"
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                showRowCount="true"
+                persistencyKey="SmartTableAnalytical_Explored"
+                enableAutoBinding="true"
+                enableAutoColumnWidth="true"
+                class="sapUiResponsiveContentPadding"
+                header="Sales Orders"
+                initiallyVisibleFields="SalesOrderNo,VersionNo,CustomerName,Factory,RequestedDate,Status,TotalAmount"
+            >
+                <Table
+                    id="_IDGenTable1"
+                    sticky="ColumnHeaders,HeaderToolbar"
+                >
+                    <items>
+                        <ColumnListItem
+                            id="_IDGenColumnListItem"
+                            type="Navigation"
+                            press="onRowPress"
+                        >
+                            <cells />
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+              <smartTable:customToolbar>
+    <OverflowToolbar>
+
+        <Title text="Sales Orders"/>
+
+        <ToolbarSpacer/>
+
+        <Button
+            text="Create"
+            press="onCreatePress"
+            visible="{= ${roleModel>/role} === 'CUSTOMER' }"
+            />
+
+    </OverflowToolbar>
+</smartTable:customToolbar>
+            </smartTable:SmartTable>
+        </content>
+    </Page>
+</mvc:View>

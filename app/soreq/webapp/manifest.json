@@ -1,0 +1,156 @@
+{
+  "_version": "1.85.0",
+  "sap.app": {
+    "id": "ust.so.soreq",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.27.0",
+      "toolsId": "d20c7d0c-59f5-4061-b6a3-a08f1127a762"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v2/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Salesorder-manage": {
+          "semanticObject": "Salesorder",
+          "action": "manage",
+          "title": "{{Salesorder-manage.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.149.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ust.so.soreq.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "ust.so.soreq.view",
+        "async": true,
+        "viewPath": "ust.so.soreq.view"
+      },
+      "routes": [
+        {
+          "name": "RouteSO",
+          "pattern": ":?query:",
+          "target": [
+            "TargetSO"
+          ]
+        },
+        {
+          "name": "RouteDetail",
+          "pattern": "detail/{ID}/{VersionNo}/{SalesOrderNo}",
+          "target": [
+            "TargetDetail"
+          ]
+        },
+        {
+          "name": "Create",
+          "pattern": "Create",
+          "target": [
+            "TargetCreate"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetSO": {
+          "id": "SO",
+          "name": "SO"
+        },
+        "TargetDetail": {
+          "id": "Detail",
+          "name": "Detail"
+        },
+        "TargetCreate": {
+          "id": "Create",
+          "name": "Create"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ust.so.soreq.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "ust.salesorder"
+  }
+}
