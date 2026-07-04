@@ -4,7 +4,8 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
-> kal
+    xmlns:table="sap.ui.table"
+>
     <Page
         id="_IDGenPage2"
         title="Sales Order Detail"
@@ -182,7 +183,7 @@
             <Table
                 id="_IDGenTable2"
                 headerText="Items"
-                items="{Items}"
+                items="{kal>/results}"
             >
                 <columns>
                     <Column id="_IDGenColumn">
@@ -228,43 +229,77 @@
                         <cells>
                             <Input
                                 id="_IDGenInput12"
-                                value="{ItemNo}"
+                                value="{kal>ItemNo}"
                                 editable="{viewModel>/editMode}"
                             />
 
                             <Input
                                 id="_IDGenInput13"
-                                value="{MaterialNo}"
+                                value="{kal>MaterialNo}"
                                 editable="{viewModel>/editMode}"
                             />
 
                             <Input
                                 id="_IDGenInput14"
-                                value="{MaterialDescription}"
+                                value="{kal>MaterialDescription}"
                                 editable="{viewModel>/editMode}"
                             />
 
                             <Input
                                 id="_IDGenInput15"
-                                value="{Quantity}"
+                                value="{kal>Quantity}"
                                 editable="{viewModel>/editMode}"
                             />
 
                             <Input
                                 id="_IDGenInput16"
-                                value="{UnitPrice}"
+                                value="{kal>UnitPrice}"
                                 editable="{viewModel>/editMode}"
                             />
 
                             <Input
                                 id="_IDGenInput17"
-                                value="{NetAmount}"
+                                value="{kal>NetAmount}"
                                 editable="{viewModel>/editMode}"
                             />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
+ <!-- <Table
+
+        items="{kal>/results}" >
+<columns>
+                        <Column width="12em">
+                            <Text text="Item Id" />
+                        </Column>
+                        <Column width="12em">
+                            <Text text="First Name" />
+                        </Column>
+                         <Column width="12em">
+                            <Text text="Last Name" />
+                        </Column>
+                         <Column width="12em">
+                            <Text text="Title" />
+                        </Column>
+                         <Column width="12em">
+                            <Text text="City" />
+                        </Column>
+                        </columns>
+                        <items>
+                        <ColumnListItem press="onPress" type="Navigation">
+                        <cells>
+                        <Text text="{kal>ItemNo}"></Text>
+                        <Text text="{kal>MaterialNo}"></Text>
+                        <Text text="{kal>MaterialDescription}"></Text>
+                        <Text text="{kal>UnitPrice}"></Text>
+                        <Text text="{kal>NetAmount}"></Text>
+                       
+
+                        </cells></ColumnListItem>
+                        </items>
+        </Table> -->
+          
         </content>
     </Page>
 </mvc:View>
