@@ -1,9 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/odata/v2/ODataModel",
-    "sap/m/MessageBox",
+      "sap/ui/model/Filter",
+        "sap/ui/model/FilterOperator",
+        "sap/ui/model/json/JSONModel",
+        "sap/m/MessageBox",
     "sap/m/MessageToast"
-], function (Controller, ODataModel, MessageBox, MessageToast) {
+], function (Controller, ODataModel, Filter, FilterOperator, JSONModel, MessageBox, MessageToast) {
     "use strict";
 
     return Controller.extend("ust.so.soreq.controller.Detail", {
@@ -40,19 +43,49 @@ sap.ui.define([
             console.log("Constructed path:", sPath);
             this.getView().bindElement({
                 path: sPath,
-                parameters: {
-                    $expand: 'Items'
+                 parameters: {
+                    $expand: "Items"  // Expand to get items
                 }
             });
-            this.getView()
-                .getModel("viewModel")
-                .setProperty("/editMode", false);
-                console.log("Overview Route Matched");
-
-    this.getView()
-        .getModel()
-        .refresh(true);
+             // Store path for later use in save
             this._sPath = sPath;
+
+             var oModel = this.getView().getModel();
+  var sPath1 = "/SalesOrderItems";
+  console.log("Loading Items with filters:", {
+                "Header/ID": sID,
+                "Header/VersionNo": sVersionNo,
+                "Header/SalesOrderNo": sSalesOrderNo
+            });
+            var aFilters = [
+    new Filter("Header_ID", FilterOperator.EQ, sID),
+];
+  oModel.read(sPath1, {
+      filters: aFilters,
+      success: function (oData) {
+          var iModel = new JSONModel();
+          iModel.setData(oData);
+          this.getView().setModel(iModel,"kal");
+
+      }.bind(this),
+      error: function (oError) {
+           console.error("Error reading items:", oError);
+                    if (oError.responseText) {
+                        console.error("Response:", oError.responseText);
+                    }
+                    MessageBox.error("Failed to load sales order items");
+      }.bind(this)
+  });
+  
+            // this.getView()
+            //     .getModel("viewModel")
+            //     .setProperty("/editMode", false);
+            //     console.log("Overview Route Matched");
+
+    // this.getView()
+    //     .getModel()
+    //     .refresh(true);
+    //         this._sPath = sPath;
 
         },
         onEdit: function () {
