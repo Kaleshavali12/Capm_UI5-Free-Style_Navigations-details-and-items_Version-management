@@ -48,6 +48,7 @@
                 useTablePersonalisation="true"
                 showRowCount="true"
                 persistencyKey="SmartTableAnalytical_Explored"
+                editable="false"
                 enableAutoBinding="true"
                 enableAutoColumnWidth="true"
                 class="sapUiResponsiveContentPadding"
@@ -80,6 +81,21 @@
             text="Create"
             press="onCreatePress"
            
+            />
+             <Button
+                text="Edit"
+                press="onEditPress"
+                enabled="{viewModel>/editButtonEnabled}"
+            />
+            <Button
+                text="Save"
+                press="onSave"
+                enabled="{viewModel>/editMode}"
+            />
+            <Button
+                text="Cancel"
+                press="onCancel"
+                enabled="{viewModel>/editMode}"
             />
 
     </OverflowToolbar>
